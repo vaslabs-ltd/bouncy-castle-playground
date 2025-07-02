@@ -1,0 +1,9 @@
+import mill._, scalalib._
+
+object keytoolBc extends ScalaModule {
+  def scalaVersion = "3.7.1"
+  def mvnDeps = Seq(
+    mvn"org.bouncycastle:bcprov-jdk18on:1.81",
+    mvn"org.bouncycastle:bcpkix-jdk18on:1.81"
+  )
+}

@@ -1,5 +1,19 @@
+.metals/
+.vscode/
+project/target/
+project/project/
+target/
+.bsp/
+.idea/
+
+*metals.*
+*.bloop
 *.class
 *.log
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+drafts/
+out/
+mill
+*.jks
+*.p12
