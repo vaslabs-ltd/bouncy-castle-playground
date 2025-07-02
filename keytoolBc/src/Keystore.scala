@@ -40,6 +40,12 @@ object Keystore:
     finally fis.close()
     ks
 
+    
+    
+  def addKeyPair(ks: KeyStore, alias: String, keyPair: java.security.KeyPair, password: String): Unit =
+    val cert = CertUtil.createSelfSignedCertificate("CN=Test", keyPair)
+    ks.setKeyEntry(alias, keyPair.getPrivate, password.toCharArray, Array(cert))
+
 
   def listAliases(ks: KeyStore): List[String] =
     val aliases = ks.aliases()
