@@ -14,7 +14,6 @@ target/
 hs_err_pid*
 drafts/
 out/
-mill
 *.jks
 *.p12
 *.bak
