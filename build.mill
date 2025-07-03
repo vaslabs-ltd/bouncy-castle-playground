@@ -13,3 +13,5 @@ object keytoolBc extends ScalaModule {
     def testFramework = "utest.runner.Framework"
   }
 }
+
+def autoFormat = mill.javalib.palantirformat.PalantirFormatModule

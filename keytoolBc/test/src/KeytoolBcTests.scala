@@ -26,15 +26,17 @@ object KeytoolBcTests extends TestSuite {
         val filename = "keystore_sun.test"
         val password = "password"
         Keystore.saveEmptyKeystore(filename, password, "PKCS12", "SUN")
-        assert(getKeytoolOutput("-list", "-keystore", filename, "-storepass", password).contains("Your keystore contains 0 entries"))
+        val output = getKeytoolOutput("-list", "-keystore", filename, "-storepass", password)
         removeFile(filename)
+        assert(output.contains("Your keystore contains 0 entries"))
     }
     test("Creates and Saves an Empty Keystore BC") {
         val filename = "keystore_bc.test"
         val password = "password"
         Keystore.saveEmptyKeystore(filename, password, "PKCS12", "BC")
-        assert(getKeytoolOutput("-list", "-keystore", filename, "-storepass", password).contains("Your keystore contains 0 entries"))
+        val output = getKeytoolOutput("-list", "-keystore", filename, "-storepass", password)
         removeFile(filename)
+        assert(output.contains("Your keystore contains 0 entries"))
     }
     test("Creates a keystore and adds a key pair SUN") {
         val filename = "keystore_sun_with_key.test"
@@ -45,8 +47,8 @@ object KeytoolBcTests extends TestSuite {
         Keystore.addKeyPair(ks, "mykey", keyPair, password)
         Keystore.saveKeystore(ks, filename, password)
         val output = getKeytoolOutput("-list", "-keystore", filename, "-storepass", password)
-        assert(output.contains("Your keystore contains 1 entry") && output.contains("mykey"))
         removeFile(filename)
+        assert(output.contains("Your keystore contains 1 entry") && output.contains("mykey"))
     }
     test("Creates a keystore and adds a key pair BC") {
         val filename = "keystore_bc_with_key.test"
@@ -57,8 +59,8 @@ object KeytoolBcTests extends TestSuite {
         Keystore.addKeyPair(ks, "mykey", keyPair, password)
         Keystore.saveKeystore(ks, filename, password)
         val output = getKeytoolOutput("-list", "-keystore", filename, "-storepass", password)
-        assert(output.contains("Your keystore contains 1 entry") && output.contains("mykey"))
         removeFile(filename)
+        assert(output.contains("Your keystore contains 1 entry") && output.contains("mykey"))
     }
   }
 }
