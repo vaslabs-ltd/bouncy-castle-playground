@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Check format and test
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: coursier/cache-action@v6
+
+      - name: Check code formatting
+        run: ./mill autoFormat.checkFormatAll
+
+      - name: Run tests
+        run: ./mill __.test
