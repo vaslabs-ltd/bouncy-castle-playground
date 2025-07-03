@@ -1,4 +1,4 @@
-package keytoolBc   
+package keytoolBc
 
 import java.security.{KeyPair, KeyPairGenerator, Security}
 import org.bouncycastle.jce.provider.BouncyCastleProvider

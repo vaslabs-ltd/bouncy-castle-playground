@@ -1,4 +1,4 @@
-import mill._, scalalib._
+import mill.*, scalalib.*
 
 object keytoolBc extends ScalaModule {
   def scalaVersion = "3.7.1"
@@ -14,4 +14,4 @@ object keytoolBc extends ScalaModule {
   }
 }
 
-def autoFormat = mill.javalib.palantirformat.PalantirFormatModule
+def autoFormat = mill.scalalib.scalafmt.ScalafmtModule

@@ -11,7 +11,7 @@ import org.bouncycastle.cert.jcajce.{JcaX509v3CertificateBuilder, JcaX509Certifi
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 
-object CertUtil :
+object CertUtil:
 
   Security.addProvider(new BouncyCastleProvider())
 
@@ -21,16 +21,16 @@ object CertUtil :
       validityDays: Int = 365
   ): X509Certificate = {
     val now = new Date()
-    val notAfter = new Date(now.getTime + validityDays.toLong * 86400000L) 
+    val notAfter = new Date(now.getTime + validityDays.toLong * 86400000L)
 
     val builder: X509v3CertificateBuilder =
       new JcaX509v3CertificateBuilder(
-        new X500Principal(dname),                         // issuer
-        BigInteger.valueOf(System.currentTimeMillis()),   // serial number
-        now,                                               // start date
-        notAfter,                                          // end date
-        new X500Principal(dname),                         // subject
-        keyPair.getPublic                                  // public key
+        new X500Principal(dname), // issuer
+        BigInteger.valueOf(System.currentTimeMillis()), // serial number
+        now, // start date
+        notAfter, // end date
+        new X500Principal(dname), // subject
+        keyPair.getPublic // public key
       )
 
     val signer = new JcaContentSignerBuilder("SHA256withRSA")

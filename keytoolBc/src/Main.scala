@@ -3,7 +3,6 @@ import Keystore.*
 
 object Main {
 
-
   def main(args: Array[String]): Unit = {
     println("Hello!!")
     val keyPair = RSAKeyGen.generateKeyPair(2048)
@@ -20,7 +19,6 @@ object Main {
     addKeyPair(ks2, "mykey", keyPair, "password")
     addKeyPair(ks3, "mykey", keyPair, "password")
 
-
     println(s"Aliases in keystore_sun.jks: ${listAliases(ks1)}")
     println(s"Aliases in keystore_sun.p12: ${listAliases(ks2)}")
     println(s"Aliases in keystore_bc.p12: ${listAliases(ks3)}")
@@ -28,8 +26,6 @@ object Main {
     saveKeystore(ks1, "keystore_sun.jks", "password")
     saveKeystore(ks2, "keystore_sun.p12", "password")
     saveKeystore(ks3, "keystore_bc.p12", "password")
-
-
 
   }
 }

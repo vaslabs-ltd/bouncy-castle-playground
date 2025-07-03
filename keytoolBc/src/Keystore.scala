@@ -7,7 +7,6 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider
 import java.security.Security
 import keytoolBc.RSAKeyGen
 
-
 object Keystore:
 
   Security.addProvider(new BouncyCastleProvider())
@@ -17,7 +16,6 @@ object Keystore:
     ks.load(null, null) // initialize empty keystore
     ks
 
-
   def saveKeystore(ks: KeyStore, filePath: String, password: String): Unit =
     saveKeystore(ks, new File(filePath), password.toCharArray)
 
@@ -26,7 +24,12 @@ object Keystore:
     try ks.store(fos, password)
     finally fos.close()
 
-  def saveEmptyKeystore(filePath: String, password: String, ksType: String, provider: String): Unit =
+  def saveEmptyKeystore(
+      filePath: String,
+      password: String,
+      ksType: String,
+      provider: String
+  ): Unit =
     val ks = createKeystore(ksType, provider)
     saveKeystore(ks, filePath, password)
 
@@ -40,17 +43,19 @@ object Keystore:
     finally fis.close()
     ks
 
-    
-    
-  def addKeyPair(ks: KeyStore, alias: String, keyPair: java.security.KeyPair, password: String): Unit =
+  def addKeyPair(
+      ks: KeyStore,
+      alias: String,
+      keyPair: java.security.KeyPair,
+      password: String
+  ): Unit =
     val cert = CertUtil.createSelfSignedCertificate("CN=Test", keyPair)
     ks.setKeyEntry(alias, keyPair.getPrivate, password.toCharArray, Array(cert))
 
-
   def listAliases(ks: KeyStore): List[String] =
     val aliases = ks.aliases()
-    Iterator.continually(aliases)
+    Iterator
+      .continually(aliases)
       .takeWhile(_.hasMoreElements)
       .map(_.nextElement())
       .toList
-
